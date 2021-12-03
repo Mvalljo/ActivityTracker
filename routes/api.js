@@ -22,4 +22,15 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
+router.get("/api/workouts/range", (req, res) => {
+  db.Workout.find({})
+    .sort({ date: -1 })
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.status(404).json(err);
+    });
+});
+
 module.exports = router;
